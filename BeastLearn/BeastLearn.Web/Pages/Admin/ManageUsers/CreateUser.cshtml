@@ -1,0 +1,125 @@
+﻿@page
+@using BeastLearn.Domain.Models.User
+@model BeastLearn.Web.Pages.Admin.ManageUsers.CreateUserModel
+@{
+    ViewData["Title"] = "ایجاد کاربر جدید";
+    List<Role> Role = ViewData["Roles"] as List<Role>;
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">افزودن کاربران</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<form method="post" enctype="multipart/form-data">
+
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    اطلاعات کاربران
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <label>نام کاربری</label>
+                        <input type="text" asp-for="CreateUser.UserName" class="form-control" placeholder="نام کاربری">
+                    </div>
+                    <span asp-validation-for="CreateUser.UserName"></span>
+                    <div class="form-group">
+                        <label>ایمیل کاربر</label>
+                        <input type="email" asp-for="CreateUser.Email" class="form-control" placeholder="ایمیل کاربر">
+                    </div>
+                    <span asp-validation-for="CreateUser.Email"></span>
+                    <div class="form-group">
+                        <label>کلمه عبور</label>
+                        <input type="text" asp-for="CreateUser.Password" class="form-control" placeholder="کلمه عبور">
+                    </div>
+                    <span asp-validation-for="CreateUser.Password"></span>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            نقش های کاربر
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div class="form-group">
+
+                                @foreach (var item in Role)
+                                {
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="SelectedRoles" value="@item.RoleId">@item.RoleTitle
+                                        </label>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-5">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    تصویر پروفایل کاربر
+                </div>
+
+                <div class="panel-body">
+
+                    <img class="thumbnail" src="~/UserAvatar/Defult.jpg" id="imgAvatar" />
+                    <div class="form-group">
+                        <label>انتخاب تصویر</label>
+                        <input type="file" asp-for="CreateUser.UserAvatar" />
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="row">
+        <p>
+            <input type="submit" value="ذخیره اطلاعات کاربر" class="btn btn-outline btn-success btn-block" />
+        </p>
+    </div>
+</form>
+
+
+
+@section Scripts
+    {
+
+    <script>
+            function readURL(input) {
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#imgAvatar').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#CreateUser_UserAvatar").change(function () {
+                readURL(this);
+            });
+    </script>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+}
+

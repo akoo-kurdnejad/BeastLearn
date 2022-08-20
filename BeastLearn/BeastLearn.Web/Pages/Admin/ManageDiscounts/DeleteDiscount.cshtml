@@ -1,0 +1,45 @@
+﻿@page "{id}"
+@using BeastLearn.Application.Convertors
+@model BeastLearn.Web.Pages.Admin.ManageDiscounts.DeleteDiscountModel
+@{
+    ViewData["Title"] = "حذف کدهای تخفیف";
+}
+
+<div class="col-md-12 center-block">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            حذف کد تخفیف
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                <input type="hidden" name="codeId" value="@ViewData["codeId"].ToString()" />
+             
+                <input type="hidden" asp-for="Discount.UsableCount " />
+                <input type="hidden" asp-for="Discount.StartDate " />
+                <input type="hidden" asp-for="Discount.EndDate " />
+                <dl class="dl-horizontal">
+                    <dt>کد تخفیف: </dt>
+                    <dd>
+                        @Model.Discount.DiscountCode
+                    </dd>
+                    <br />
+                    <dt>درصد تخفیف : </dt>
+                    <dd>@Model.Discount.DiscountPercent</dd>
+
+                    <dt>تاریخ شروع  : </dt>
+                    <td>@((Model.Discount.StartDate != null) ? Model.Discount.StartDate.Value.ToStringShamsiDate() : "")</td>
+                    <dt>تاریخ پایان :</dt>
+                    <td>@((Model.Discount.EndDate != null) ? Model.Discount.EndDate.Value.ToStringShamsiDate() : "")</td>
+                    <dd>
+                        <input type="submit" value="حذف کد تخفیف" class="btn btn-outline btn-danger btn-block" />
+                        <a asp-page="Index" class="btn btn-outline btn-info btn-block">انصراف</a>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+
+

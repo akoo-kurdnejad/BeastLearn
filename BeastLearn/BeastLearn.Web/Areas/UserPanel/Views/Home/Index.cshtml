@@ -1,0 +1,44 @@
+﻿@using BeastLearn.Application.Convertors
+@model BeastLearn.Application.ViewModels.Users.InformationUserViewModel
+
+@{
+    ViewData["Title"] = "پنل کاربری " + User.Identity.Name;
+
+}
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">بست لرن</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> پنل کاربری </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="user-account">
+        <div class="row">
+            <partial name="_Sidbar" />
+            <div class="col-md-9 col-sm-8 col-xs-12">
+                <section class="user-account-content">
+                    <header><h1> داشبورد </h1></header>
+                    <div class="inner">
+                        <div class="account-information">
+                            <h3> اطلاعات کاربری </h3>
+                            <ul>
+                                <li> <i class="zmdi zmdi-account"></i> نام و نام خانوادگی :  @Model.FullName</li>
+                                <li> <i class="zmdi zmdi-assignment-account"></i> نام کاربری :   @Model.UserName </li>
+                                <li> <i class="zmdi zmdi-email"></i> ایمیل :  @Model.Email</li>
+                                <li> <i class="zmdi zmdi-calendar-check"></i> تاریخ عضویت :  @Model.RegisterDate.ToStringShamsiDate()</li>
+                                <li> <i class="zmdi zmdi-smartphone-android"></i> شماره تماس : @Model.PhoneNumber </li>
+                                <li> <i class="zmdi zmdi-account"></i> جنسیت :  @Model.Gender</li>
+                                <li> <i class="zmdi zmdi-wallpaper"></i> کیف پول :  تومان  @Model.Wallet</li>
+                                <li> <i class="zmdi zmdi-account"></i>  درباره من :  @Model.Description </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

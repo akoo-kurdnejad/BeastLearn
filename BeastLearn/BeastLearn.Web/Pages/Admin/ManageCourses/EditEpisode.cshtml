@@ -1,0 +1,76 @@
+﻿@page "{id}"
+@model BeastLearn.Web.Pages.Admin.ManageCourses.EditEpisodeModel
+@{
+    ViewData["Title"] = "ویرایش بخش ها";
+}
+
+<div class="container">
+    <div class="col-lg-12">
+        <h3 class="page-header">ویرایش بخش های سایت</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+
+        <input type="hidden" asp-for="CourseEpisode.CourseId"/>
+        <input type="hidden" asp-for="CourseEpisode.EpisodeId"/>
+        <input type="hidden" asp-for="CourseEpisode.EpisodeFileName"/>
+        <div class="col-lg-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    ویرایش بخش ها
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+
+                    <h2>اطلاعات بخش ها</h2>
+                    <hr />
+                    <div class="form-group">
+                        <label>عنوان بخش</label>
+                        <input type="text" asp-for="CourseEpisode.EpisodeTitle" class="form-control">
+                        <span asp-validation-for="CourseEpisode.EpisodeTitle"></span>
+                    </div>
+                    <div class="md-form">
+                        <label>تایم بخش</label>
+                        <input type="text" id="timeformatExample1" class="form-control" asp-for="CourseEpisode.EpisodeTime" />
+                        <span asp-validation-for="CourseEpisode.EpisodeTime"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>افزودن فایل</label>
+                        <input type="file" name="EpisodeFile">
+                        <p class="text-danger">فایل اجباری است</p>
+                        @if (ViewData["IsExistFile"] != null)
+                        {
+
+                            <div class="alert alert-danger"><h3 class="text-center">نام فایل وارد شده تکراری میباشد لطفا آن را تغییر دهید.</h3></div>
+
+                        }
+                        <span asp-validation-for="CourseEpisode.EpisodeFileName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>دسترسی</label>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" asp-for="CourseEpisode.IsFree">
+                                رایگان است
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <p>
+                        <input type="submit" value="ویرایش اطلاعات بخش ها" class="btn btn-outline btn-warning btn-block" />
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</form>

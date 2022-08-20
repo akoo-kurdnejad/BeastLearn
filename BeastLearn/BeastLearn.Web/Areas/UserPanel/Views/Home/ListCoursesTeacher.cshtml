@@ -1,0 +1,37 @@
+﻿@model IEnumerable<BeastLearn.Application.ViewModels.Courses.ShowCourseViewModel>
+@{
+    ViewData["Title"] = "دوره های مدرس";
+}
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">بست لرن</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> نمایش دوره ها </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="user-account">
+        <div class="row">
+            <partial name="_Sidbar" />
+            <div class="col-md-9 col-sm-8 col-xs-12">
+                <section class="user-account-content">
+                    <header><h1> نمایش دوره های مدرس </h1></header>
+                    <hr/>
+                    <section class="terms-items">
+                        <div class="row">
+                          
+                            @foreach (var item in Model)
+                            {
+                                <partial name="_BoxCourse" model="@item"/>
+                            }
+
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

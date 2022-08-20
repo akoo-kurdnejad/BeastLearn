@@ -1,0 +1,49 @@
+﻿@page "{id?}"
+@model BeastLearn.Web.Pages.Admin.ManageGroups.CreateGroupModel
+@{
+    ViewData["Title"] = "افزودن گروه";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">افزودن گروه های سایت</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<form method="post" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="CourseGroup.ParentId" />
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    گروه های سایت
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <label>@((Model.CourseGroup.ParentId == null)? "عنوان سرگروه" :"عنوان زیرگروه")</label>
+                        <input type="text" asp-for="CourseGroup.GroupTitle" class="form-control" placeholder="عنوان ">
+                    </div>
+                    <span asp-validation-for="CourseGroup.GroupTitle"></span>
+
+                </div>
+
+                <div class="container">
+                   
+                    <p>
+                        <input type="submit" value="ذخیره اطلاعات" class="btn btn-outline btn-success btn-block" />
+                    </p>
+                    
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+ 
+</form>
+
+
+

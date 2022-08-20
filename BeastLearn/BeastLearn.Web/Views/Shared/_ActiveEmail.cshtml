@@ -1,0 +1,10 @@
+﻿@model BeastLearn.Domain.Models.User.User
+
+<div style="text-align: center;padding:10px;border:1px solid gray; box-shadow: 0px 10px 5px gray;border-radius: 10px;">
+    <h1>ایمیل فعالسازی حساب کاربری @Model.UserName</h1>
+    <hr>
+    <p>
+        با تشکر از ثبت نام شما در سایت ما کاربر عزیز .برای فعالسازی حساب کاربری خود بر روی لینک زیر کلیک کنید
+    </p>
+    <a href="http://localhost:63760/Account/ActiveAccount/@Model.ActiveCode" style="font-size: 24px; font-weight: bolder;text-decoration: none;color:green;text-shadow: 5px 5px 10px gray;"> فعالسازی</a>
+</div>

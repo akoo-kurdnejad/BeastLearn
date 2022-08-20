@@ -1,0 +1,127 @@
+﻿
+@model BeastLearn.Application.ViewModels.Users.EditProfileViewModel
+
+@{
+    ViewData["Title"] = "ویرایش اطلاعات ";
+}
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">بست لرن</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> ویرایش اطلاعات کاربری </li>
+        </ul>
+    </nav>
+</div>
+
+
+
+<div class="container">
+    <div class="user-account">
+        <div class="row">
+            <partial name="_Sidbar" />
+            <div class="col-md-9 col-sm-8 col-xs-12">
+                <section class="user-account-content">
+
+                    <section class="user-account-content">
+                        <header><h1> ویرایش حساب کاربری </h1></header>
+                        <div class="inner form-layer">
+                            <form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+                                @if (ViewBag.IsSuccess == true)
+                                {
+                                    <div class="alert alert-success">
+                                        اطلاعات کاربری شما با موفقیت ویرایش شد
+                                    </div>
+                                }
+
+                                <input type="hidden" asp-for="AvatarName" />
+                                <input type="hidden" asp-for="UserName" />
+                                <input type="hidden" asp-for="Email" />
+                                <div class="row">
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="username"><i class="zmdi zmdi-account"></i></span>
+                                            <input type="text" asp-for="UserName" class="form-control" disabled="disabled" placeholder="نام کاربری" aria-describedby="username">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="email-address"><i class="zmdi zmdi-email"></i></span>
+                                            <input type="email" asp-for="Email" class="form-control" disabled="disabled" placeholder="ایمیل" aria-describedby="email-address">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="password"><i class="zmdi zmdi-account"></i></span>
+                                            <input type="text" asp-for="FullName" class="form-control" placeholder="نام ونام خانوادگی " aria-describedby="password">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="username"><i class="zmdi zmdi-smartphone-android"></i></span>
+                                            <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="موبایل" aria-describedby="username">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="username"><i class="zmdi zmdi-account"></i></span>
+                                            <textarea class="form-control" rows="5" placeholder="درباره من...." asp-for="Description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <p class="help-block">
+                                            جنسیت
+                                        </p>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="username"><i class="zmdi zmdi-account"></i></span>
+                                            <select class="form-control" asp-for="Gender" aria-describedby="username">
+                                                <option value="مشخص نشده">مشخص نشده</option>
+                                                <option value="مذکر">مذکر</option>
+                                                <option value="مونث">مونث</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <p class="help-block">
+                                            آواتار
+                                        </p>
+                                        <input type="file" asp-for="UserAvatar" />
+
+                                        <img class="thumbnail" id="imgAvatar" src="~/UserAvatar/@Model.AvatarName" style="max-width: 150px" />
+                                    </div>
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <button class="btn btn-success"> ویرایش اطلاعات </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#imgAvatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#EditUserViewModel_UserAvatar").change(function() {
+            readURL(this);
+        });
+    </script>
+}

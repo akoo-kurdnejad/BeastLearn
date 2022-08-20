@@ -1,0 +1,42 @@
+﻿@page "{id}"
+@using BeastLearn.Application.Convertors
+@model BeastLearn.Web.Pages.Admin.ManageUsers.DeleteUserModel
+@{
+    ViewData["Title"] = "حذف کاربران";
+}
+
+<hr />
+<div class="col-md-10 center-block">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            حذف کاربر
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                <input type="hidden" name="UserId" value="@ViewData["UserId"].ToString()" />
+
+                <dl class="dl-horizontal">
+                    <dt>نام کاربری : </dt>
+                    <dd>@Model.InformationUser.UserName</dd>
+                    <dt>ایمیل : </dt>
+                    <dd>@Model.InformationUser.Email</dd>
+                    <dt>موجودی کیف پول  : </dt>
+                    <dd>@Model.InformationUser.Wallet</dd>
+                    <dt>تاریخ عضویت : </dt>
+                    <dd>@Model.InformationUser.RegisterDate.ToStringShamsiDate()</dd>
+                    <dt></dt>
+                    <dd>
+                        <input type="submit" value="حذف کاربر" class="btn btn-outline btn-danger btn-block" />
+                    </dd>
+                </dl>
+            </form>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+
+
+
+
+

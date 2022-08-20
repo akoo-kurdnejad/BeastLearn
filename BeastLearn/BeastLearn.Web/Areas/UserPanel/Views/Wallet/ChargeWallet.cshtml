@@ -1,0 +1,63 @@
+﻿
+@model BeastLearn.Application.ViewModels.Users.ChargeWalletViewModel
+@{
+    ViewData["Title"] = "شارژ کیف پول";
+}
+
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">بست لرن</a></li>
+            <li class="breadcrumb-item active" aria-current="page">شارژ کیف پول </li>
+        </ul>
+    </nav>
+</div>
+
+
+<div class="container">
+    <div class="user-account">
+        <div class="row">
+            <partial name="_Sidbar" />
+            <div class="col-md-9 col-sm-8 col-xs-12">
+                <section class="user-account-content">
+
+                    <section class="user-account-content">
+
+                        <br />
+                        <header>
+                            <div class="alert alert-info"><h4 class="text-center">مبلغ واریزی را با دقت و به تومان وارد کنید.مبلغ کسر شده از حساب شما عودت داده  نمی شود.</h4></div>
+                        </header>
+                        <br />
+
+                        <div class="inner form-layer">
+
+                            <form asp-action="ChargeWallet" method="post">
+
+                                <div class="row">
+
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="email-address"><i class="zmdi zmdi-balance-wallet"></i></span>
+                                            <input type="number" asp-for="Amount" class="form-control" placeholder="مبلغ به تومان" aria-describedby="email-address">
+                                        </div>
+                                    </div>
+
+                                    <div class="text-danger" asp-validation-summary="All"></div>
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <button class="btn btn-success"> شارژ کیف پول </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr />
+
+                        </div>
+
+
+                    </section>
+
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

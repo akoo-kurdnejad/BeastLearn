@@ -1,0 +1,97 @@
+﻿@page "{handler?}"
+@model BeastLearn.Web.Pages.Admin.ManageDiscounts.CreateDiscountModel
+@{
+    ViewData["Title"] = "افزودن کد تخفیف";
+}
+
+<hr />
+<form method="post">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    وارد کردن اطلاعات
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+
+                    <h2>اطلاعات کدهای تخفیف</h2>
+                    <hr />
+                    <div class="form-group">
+                        <label>کد تخفیف</label>
+                        <input type="text" asp-for="Discount.DiscountCode" class="form-control">
+                        <div id="alertCode" class="alert alert-danger" style="display: none">
+                            <p class="text-muted text-center">کد تخفیف وارد شده تکراری می باشد.لطفا آن را تغییر دهید.</p>
+                        </div>
+                        <span asp-validation-for="Discount.DiscountCode"></span>
+                    </div>
+                    <div class="md-form">
+                        <label>درصد تخفیف</label>
+                        <input type="text" id="timeformatExample1" class="form-control" asp-for="Discount.DiscountPercent" />
+                        <span asp-validation-for="Discount.DiscountPercent"></span>
+                    </div>
+                    <div class="md-form">
+                        <label>تعداد مجاز استفاده</label>
+                        <input type="text" id="timeformatExample1" class="form-control" asp-for="Discount.UsableCount" />
+                        <span asp-validation-for="Discount.UsableCount"></span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label>تاریخ شروع </label>
+                        <input id="stDate" name="startDate" />
+                    </div>
+                    <div class="form-group">
+                        <label>تاریخ پایان </label>
+                        <input id="edDate" name="endDate" />
+                    </div>
+                </div>
+
+                <div class="container">
+                    <p>
+                        <input type="submit" value="ذخیره اطلاعات " class="btn btn-outline btn-success btn-block" />
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</form>
+
+@section Scripts{
+
+    <script>
+        $("#Discount_DiscountCode").blur(function () {
+
+            $.ajax({
+                type: "get",
+                url: "/Admin/ManageDiscounts/CreateDiscount/CheckCode?code=" + $("#Discount_DiscountCode").val()
+            }).done(function (res) {
+                if (res === 'True') {
+                    $("#alertCode").show();
+                } else {
+                    $("#alertCode").hide();
+                }
+            });
+
+        });
+
+    </script>
+
+
+    <link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.common.min.css" rel="stylesheet"/>
+    <link href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.default.min.css" rel="stylesheet"/>
+
+    <script src="/js/kendo.all.min.js"></script>
+
+
+    <script>
+        // create DatePicker from input HTML element
+        $("#stDate").kendoDatePicker();
+        $("#edDate").kendoDatePicker();
+    </script>
+}

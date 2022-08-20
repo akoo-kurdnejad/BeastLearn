@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "پرداخت تراکنش";
+}
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">بست لرن</a></li>
+            <li class="breadcrumb-item active" aria-current="page">پرداخت تراکنش </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container">
+
+    @if (ViewBag.IsSuccess == true)
+    {
+        <div class="alert alert-success">
+            <h2 class="text-center">تراکنش بانکی با موفقیت انجام شد</h2>
+            <p class="text-center">کد رهگیری شما :@ViewBag.code</p>
+        </div>
+        <script>
+            // Your delay in milliseconds
+            var delay = 3000; 
+            setTimeout(function () { window.location = "https://localhost:44315/UserPanel/WalletUser"; }, delay);
+        </script>
+
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <h2 class="text-center">تراکنش بانکی با شکست مواجه شد .لطفا بعدا تلاش بفرمایید.</h2>
+        </div>
+
+        <script>
+            // Your delay in milliseconds
+            var delay = 3000; 
+            setTimeout(function () { window.location = "https://localhost:44315/UserPanel"; }, delay);
+        </script>
+    }
+
+</div>
+

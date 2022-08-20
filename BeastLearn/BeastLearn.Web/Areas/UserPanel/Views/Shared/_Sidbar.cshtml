@@ -1,0 +1,43 @@
+﻿@using BeastLearn.Application.Convertors
+@using BeastLearn.Application.Interfaces
+@using BeastLearn.Application.ViewModels.Users
+
+
+@inject IUserService _UserService
+@inject IPermissionService _PermissionService
+
+@{
+    SideBarUserPanelViewModel user = _UserService.GetInformationSideBar(User.Identity.Name);
+}
+<div class="col-md-3 col-sm-4 col-xs-12">
+    <aside>
+        <div class="avatar-layer">
+            <div class="img-layer">
+                <a href="" class="change-image"><i class="zmdi zmdi-edit"></i></a>
+                <img src="~/UserAvatar/@user.ImageName">
+            </div>
+            <div class="detail">
+                <span> @user.UserName</span>
+                <span> عضویت :  @user.RegisterDate.ToStringShamsiDate()</span>
+            </div>
+        </div>
+        <section>
+            <header><h3> میز کار </h3></header>
+            <div class="inner">
+                <ul>
+                    <li><a href="/UserPanel"> مشاهده حساب کابری </a></li>
+                    <li><a href="/UserPane/EditProfile"> ویرایش حساب کابری </a></li>
+                    <li><a href="/UserPanel/ChangePassword"> تغییر رمز عبور </a></li>
+                    <li><a href="/UserPanel/WalletUser"> کیف پول ‍شما ‍‍‍‍‍‍</a></li>
+                    <li><a href="/UserPanel/MyOrder"> لیست فاکتورهای شما ‍‍‍‍‍‍</a></li>
+
+                    @if (_PermissionService.CheckPermission(34, User.Identity.Name))
+                    {
+                        <li><a href="/UserPanel/CourseTeacher"> دوره های شما </a></li>
+                    }
+                    <li><a href="/Logout"> خروج از حساب کاربری </a></li>
+                </ul>
+            </div>
+        </section>
+    </aside>
+</div>

@@ -1,0 +1,43 @@
+﻿@page "{id}"
+@using BeastLearn.Application.Convertors
+@model BeastLearn.Web.Pages.Admin.ManageCourses.DeleteCourseModel
+@{
+    ViewData["Title"] = "حذف دوره ها";
+}
+
+<hr />
+<div class="col-md-12 center-block">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            حذف دوره
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                <input type="hidden" name="CourseId" value="@ViewData["CourseId"].ToString()" />
+
+                <dl class="dl-horizontal">
+                    <dt>تصویر دوره: </dt>
+                    <dd>
+                        <img src="~/Course/Image/@Model.ShowCourse.CourseImageName" style="max-width: 120px" />
+                    </dd>
+                    <br />
+                    <dt>عنوان دوره : </dt>
+                    <dd>@Model.ShowCourse.CourseTitle</dd>
+
+                    <dt>تاریخ ثبت دوره  : </dt>
+                    <dd>@Model.ShowCourse.CreateDate.ToStringShamsiDate()</dd>
+
+                    <dt>قیمت دوره :</dt>
+                    <dd>@Model.ShowCourse.Price.ToString("#,0 تومان")</dd>
+                    <dd>
+                        <input type="submit" value="حذف دوره" class="btn btn-outline btn-danger btn-block" />
+                        <a asp-page="Index" class="btn btn-outline btn-info btn-block">انصراف</a>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+

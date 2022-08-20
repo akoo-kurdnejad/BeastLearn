@@ -1,0 +1,136 @@
+﻿@page "{id}"
+@using BeastLearn.Application.Convertors
+@model BeastLearn.Web.Pages.Admin.ManageCourses.ListUserBuyCourseModel
+@{
+    ViewData["Title"] = "لیست دانشجویان دوره";
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">لیست دانشجویان دوره</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.col-lg-12 -->
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                لیست دانشجویان
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="col-sm-4">
+                        <div class="container">
+                            <a class="btn btn-primary btn-toolbar" >تعداد دانشجویان دوره :   <span>@Model.UserCourse.Item1.Count</span> نفر </a>
+                        </div>
+                    </div>
+
+                </div>
+                <form>
+                    <input type="hidden" name="UserId" value="@ViewData["UserId"].ToString()" />
+
+                    <div class="col-sm-7">
+                        <div id="dataTables-example_filter" class="dataTables_filter">
+                            <input type="search" name="filterEmail" placeholder="جستجو براساس ایمیل" class="form-control input-sm" aria-controls="dataTables-example" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+
+                        <button type="submit" class="btn btn-outline btn-info">جستجو</button>
+                        <a class="btn btn btn-outline btn-default btn-sm" href="/Admin/ManageCourses/ListUserBuyCourse/@ViewData["UserId"].ToString()">خالی کردن</a>
+
+                    </div>
+
+                </form>
+
+
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+
+                    </div>
+                    <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+                        <thead>
+                            <tr role="row">
+                                <th tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 164.667px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column ascending">
+                                    نام کاربری
+                                </th>
+                                <th tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 164.667px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column ascending">
+                                    ایمیل
+                                </th>
+
+                                <th tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 164.667px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column ascending">
+                                    تاریخ ثبت نام
+                                </th>
+                                <th tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 164.667px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column ascending">
+                                    دستورات
+                                </th>
+
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model.UserCourse.Item1)
+                            {
+                                <tr class="gradeA odd">
+                                    <td class="sorting_1">@item.UserName</td>
+                                    <td class=" ">@item.Email</td>
+
+                                    <td class="center ">@item.CreateRegister.ToStringShamsiDate()</td>
+                                    <td>
+                                        <a href="/Admin/ManageCourses/ListOrders/@item.UserId" class="btn btn-outline btn-primary btn-sm">
+                                           ریز فاکتورها
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info" id="dataTables-example_info" role="alert" aria-live="polite" aria-relevant="all">
+                            </div>
+                        </div>
+
+                        @if (Model.UserCourse.Item2 > 1)
+                        {
+                            <div class="col-sm-6">
+                                <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                                            <a href="#">قبلی</a>
+                                            @for (int i = 1; i <= Model.UserCourse.Item2; i++)
+                                            {
+                                            <li class="paginate_button" aria-controls="dataTables-example" tabindex="0">
+                                                <a href="/Admin/ManageCourses/ListUserBuyCourse/@ViewData["UserId"].ToString()?PageId=@i">@i</a>
+                                            </li>
+                                        }
+                                            <li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                                                <a href="#">بعدی</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            }
+
+                    </div>
+                </div>
+                <!-- /.table-responsive -->
+
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>

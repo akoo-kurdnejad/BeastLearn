@@ -1,0 +1,76 @@
+﻿@using BeastLearn.Application.Convertors
+@using BeastLearn.Application.Interfaces
+@model IEnumerable<BeastLearn.Domain.Models.Course.CourseComment>
+
+@inject IPermissionService _PermissionService
+@{
+    Layout = null;
+
+}
+
+@foreach (var item in Model.Where(c => c.ParentId == null))
+{
+    <ul>
+        <li>
+            <div class="comment-row">
+                <img src="/UserAvatar/@item.User.UserAvatar">
+                <div class="left-col">
+                    <h3> @item.User.UserName </h3>
+                    <span>@item.CreateDate.ToShamsi()</span>
+                    <p>
+                        @item.CommentText
+                    </p>
+
+                    @if (User.Identity.IsAuthenticated && _PermissionService.CheckPermission(27, User.Identity.Name))
+                    {
+
+                        <a class="btn btn-danger btn-sm" onclick="Delete(@item.CommentId)">حذف</a>
+                    }
+
+                    <a class="btn btn-primary btn-sm" onclick="ReplyComment(@item.CommentId)">پاسخ</a>
+
+
+                    @if (Model.Any(c => c.ParentId == item.CommentId))
+                    {
+                        @foreach (var sub in Model.Where(c => c.ParentId == item.CommentId))
+                        {
+
+                            <ul>
+                                <li>
+                                    <div class="comment-row col-md-10">
+                                        <img src="~/UserAvatar/@sub.User.UserAvatar">
+                                        <div class="left-col">
+                                            <h3> @((sub.User.FullName != null) ? item.User.FullName : item.User.UserName) </h3>
+                                            <span>@sub.CreateDate.ToStringShamsiDate()</span>
+
+
+                                            <p>
+                                                @sub.CommentText
+
+                                            </p>
+
+                                            @if (User.Identity.IsAuthenticated && _PermissionService.CheckPermission(2, User.Identity.Name))
+                                            {
+
+                                                <a class="btn btn-danger btn-sm" onclick="Delete(@sub.CommentId)">حذف</a>
+                                            }
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        }
+                    }
+
+                </div>
+
+            </div>
+        </li>
+    </ul>
+
+}
+
+
+
+
