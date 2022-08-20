@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1082
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{1DAB235E-6EA4-43BC-9162-C8AC48CEEE6F}"
 EndProject
@@ -22,6 +22,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeastLearn.Web", "BeastLearn.Web\BeastLearn.Web.csproj", "{396B577A-10FB-40B2-B647-F4250D8DA723}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeastLearn.Infra.IoC", "BeastLearn.Infra.IoC\BeastLearn.Infra.IoC.csproj", "{2EE2E784-6CED-4E8F-8CE6-3134EE3A7A0F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{822EF0D9-DFEA-49F6-B20D-51BAE5106780}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\DB\akoo = ..\..\..\..\DB\akoo
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
